@@ -11,3 +11,5 @@ target/*
 .DS_Store
 /output/
 /src/test/resources/CRAFT/
+.idea/
+translator-dssat.iml

@@ -47,13 +47,24 @@ public class DssatCmdApp {
             Map result = translator.readFile(inputPaths.get(0));
             BufferedOutputStream bo;
             outputPath += File.separator;
-            File f = new File(outputPath + new File(outputPath).getName().replaceAll("\\.\\w+$", ".json"));
-            bo = new BufferedOutputStream(new FileOutputStream(f));
 
-            // Output json for reading
-            bo.write(JSONAdapter.toJSON(result).getBytes());
-            bo.flush();
-            bo.close();
+            // Create output directory if it doesn't exist
+            File directory = new File(outputPath);
+            boolean success = directory.mkdirs();
+
+            if (success) {
+                File f = new File(outputPath + new File(inputPaths.get(0)).getName().replaceAll("\\.\\w+$", ".json"));
+                bo = new BufferedOutputStream(new FileOutputStream(f));
+                // Output json for reading
+                bo.write(JSONAdapter.toJSON(result).getBytes());
+                bo.flush();
+                bo.close();
+            }
+            else
+            {
+                LOG.error("Error creating output directory.");
+                return;
+            }
         }
         LOG.info("Job done!");
     }

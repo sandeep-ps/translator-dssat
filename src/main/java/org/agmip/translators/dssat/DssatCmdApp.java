@@ -92,7 +92,7 @@ public class DssatCmdApp {
             }
         }
         LOG.info("Read from {}", inputPaths);
-        LOG.info("Output to {}", outputPath);
+        LOG.info("Output directory: {}", outputPath);
     }
 
     private static HashMap readJson() throws IOException {

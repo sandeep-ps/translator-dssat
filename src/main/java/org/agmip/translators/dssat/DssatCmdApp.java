@@ -21,6 +21,7 @@ public class DssatCmdApp {
 
     private static boolean isCompressed;
     private static boolean isToModel;
+    private static boolean isHelp;
     private static ArrayList<String> inputPaths;
     private static String outputPath;
     private static final Logger LOG = LoggerFactory.getLogger(DssatCmdApp.class);
@@ -32,6 +33,17 @@ public class DssatCmdApp {
             LOG.error("There is no valid input path, please check input arguments");
             return;
         }
+
+        if (isHelp) {
+            System.out.println("DSSAT Translator Fork Help\n");
+            System.out.println("### Convert from JSON to DSSAT model");
+            System.out.println("$ java -jar translator-dssat-1.2.20-jar-with-dependencies.jar <input_file.json>");
+            System.out.println("### Convert from DSSAT model to JSON");
+            System.out.println("$ java -jar translator-dssat-1.2.20-jar-with-dependencies.jar <input_file.SQX.zip>");
+            System.out.println("Here, <input_file.SQX.zip> is a ZIP file containing the SQX file.");
+            return;
+        }
+
         if (isToModel) {
             LOG.info("Translate {} to DSSAT...", inputPaths);
             DssatControllerOutput translator = new DssatControllerOutput();
@@ -72,6 +84,7 @@ public class DssatCmdApp {
     private static void init() {
         isCompressed = false;
         isToModel = false;
+        isHelp = false;
         inputPaths = new ArrayList();
         outputPath = getOutputPath("");
     }
@@ -87,12 +100,17 @@ public class DssatCmdApp {
             } else if (arg.toUpperCase().endsWith(".ZIP")) {
                 isToModel = false;
                 inputPaths.add(arg);
+            }
+            else if (arg.equalsIgnoreCase("--help") || arg.equalsIgnoreCase("-h")) {
+                    isHelp = true;
             } else {
                 outputPath = getOutputPath(arg);
             }
         }
-        LOG.info("Read from {}", inputPaths);
-        LOG.info("Output directory: {}", outputPath);
+        if (!isHelp) {
+            LOG.info("Read from {}", inputPaths);
+            LOG.info("Output directory: {}", outputPath);
+        }
     }
 
     private static HashMap readJson() throws IOException {

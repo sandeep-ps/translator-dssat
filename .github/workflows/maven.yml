@@ -22,4 +22,4 @@ jobs:
     - uses: actions/upload-artifact@master
       with:
         name: translator-dssat-1.2.20-artifact
-        path: ~/translator-dssat-artifact
+        path: /home/runner/translator-dssat-artifact

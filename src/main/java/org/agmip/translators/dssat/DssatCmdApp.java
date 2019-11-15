@@ -35,7 +35,7 @@ public class DssatCmdApp {
         }
 
         if (isHelp) {
-            System.out.println("DSSAT Translator Fork Help");
+            System.out.println("DSSAT Translator Help");
             System.out.println();
             System.out.println("### Convert from JSON to DSSAT model");
             System.out.println("$ java -jar translator-dssat-1.2.20-jar-with-dependencies.jar <input_file.json>");

@@ -35,12 +35,15 @@ public class DssatCmdApp {
         }
 
         if (isHelp) {
-            System.out.println("DSSAT Translator Fork Help\n");
+            System.out.println("DSSAT Translator Fork Help");
+            System.out.println();
             System.out.println("### Convert from JSON to DSSAT model");
             System.out.println("$ java -jar translator-dssat-1.2.20-jar-with-dependencies.jar <input_file.json>");
+            System.out.println();
             System.out.println("### Convert from DSSAT model to JSON");
             System.out.println("$ java -jar translator-dssat-1.2.20-jar-with-dependencies.jar <input_file.SQX.zip>");
             System.out.println("Here, <input_file.SQX.zip> is a ZIP file containing the SQX file.");
+            System.out.println();
             return;
         }
 

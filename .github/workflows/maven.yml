@@ -18,7 +18,7 @@ jobs:
     - name: Build with Maven
       run: mvn -B package --file pom.xml -Dmaven.test.skip=true
     - name: Copy JAR
-      run: cp target/translator-dssat-1.2.20-jar-with-dependencies.jar ~/translator-dssat-artifact/translator-dssat-1.2.20-jar-with-dependencies.jar
+      run: cp target/translator-dssat-1.2.20-jar-with-dependencies.jar ~/translator-dssat-artifact
     - uses: actions/upload-artifact@master
       with:
         name: translator-dssat-1.2.20-artifact

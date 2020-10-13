@@ -523,16 +523,6 @@ public class DssatXFileInput extends DssatCommonInput {
                         HashMap tmp = readLine(line, formats);
                         translateDateStr(tmp, "pdate");
                         translateDateStr(tmp, "edate");
-                        // cm -> mm
-                        String pldp = getObjectOr(tmp, "pldp", "");
-                        if (!pldp.equals("")) {
-                            try {
-                                BigDecimal pldpBD = new BigDecimal(pldp);
-                                pldpBD = pldpBD.multiply(new BigDecimal("10"));
-                                tmp.put("pldp", pldpBD.toString());
-                            } catch (NumberFormatException e) {
-                            }
-                        }
                         plArr.add(tmp);
                     } else {
                     }
